@@ -1,0 +1,7 @@
+.media {
+    object-fit: cover;
+  }
+
+.min-height{
+  min-height: 70px;
+}
