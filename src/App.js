@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import MenuItem from './components/MenuItem'
 import {foodItem} from './menuOptions'
-
 import Grid from '@material-ui/core/Grid';
 import Bar from './Bar'
+import animateScrollTo from 'animated-scroll-to'
 
 class App extends Component {
-  state = {selectedCategory: 'Bebidas', arrayOfFoods:this.getRecommendeds()}
+  state = {selectedCategory: 'Bebidas', arrayOfFoods:this.getRecommendeds(), x:0}
+  
 
   getRecommendeds(){
     var arrayOfRecommendedsFood = foodItem.filter(food => food.recommended)
@@ -34,7 +35,7 @@ class App extends Component {
     })
     
     
-    this.setState({arrayOfFoods, selectedCategory})
+    this.setState({...this.state, arrayOfFoods, selectedCategory})
                           
   }
 
@@ -51,10 +52,10 @@ class App extends Component {
 
     var arrayOfFoods = [RandomDrink, RandomDessert, RandomSnack]
 
-    this.setState({arrayOfFoods, selectedCategory})
+    this.setState({...this.state, arrayOfFoods, selectedCategory})
   }
 
-  giveWidth(){
+  giveWidth() {
     var num = this.state.arrayOfFoods.length
     
     var resultWidth = num * 341
@@ -62,12 +63,30 @@ class App extends Component {
     return resultWidth
   }
 
+  scrollFunction(){    
+    const x = this.state.x + 341
+    this.setState({...this.state, x})    
+    animateScrollTo(x, {horizontal: true, speed:5000})
+
+  }
+
+    startCounter(){     
+      var legalTimer = setInterval(this.scrollFunction.bind(this), 3000)
+    }
+
+    componentDidMount(){
+      this.startCounter()
+    }
+    
+    
     
   render() {
+    
     return (    
       <div >
       <Bar onChangeselectedCategory={this.valueChanged} filter={this.filterByCategory}> </Bar>
-       <Grid style={{width:this.giveWidth(), paddingTop:59 }} container spacing={24}>     
+      
+       <Grid id="containerMoviment" style={{width:this.giveWidth(), paddingTop:59 }} container spacing={24}>     
          
          {this.state.arrayOfFoods.map(this.renderfoodItem)}
         
@@ -80,3 +99,9 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+  fazer botao de rolamento
+  fazer barra se movimentar solo
+  subir no gitpages
+*/

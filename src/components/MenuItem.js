@@ -10,10 +10,10 @@ class MenuItem extends Component {
     render() {
         return (
             <div className="padding-left">
-            <Card >
+            <Card>
                 <CardMedia
                     component="img"
-                    height="400"
+                    height="350"
                     image={this.props.imgURL}
                     className="media"
                 />
