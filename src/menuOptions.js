@@ -11,7 +11,7 @@ export const foodItem = [
     {name:"Bolo de Chocolate", imgURL:"/img/bolo-de-chocolate.jpg", description:"Bolo de chocolate", price:"R$4.00", category:"sobremesas", recommended: true},
     {name:"Lasanha a Bolonhesa", imgURL:"/img/lasanha-a-bolonhesa.jpg", description:"Lasanha a Bolonhesa", price:"R$7.00", category:"lanches", recommended: true},
     {name:"Hambúrguer", imgURL:"/img/hamburguer.jpg", description:"Hámburgue de calabresa com bacon", price:"R$10.00", category:"lanches", recommended: true},
-    {name:"Pavê", imgURL:"/img/pave-chocolate-branco.jpg", description:"Pavê ou pa cumê", price:"R$7.00", category:"sobremesas"},
+    {name:"Pavê", imgURL:"/img/pave-chocolate-branco.jpg", description:"Pavê ou pa cumê", price:"R$7.00", category:"sobremesas", recommended:true},
     {name:"Suco de laranja", imgURL:"/img/suco-de-laranja.jpg", description:"Suco de Laranja", category:"bebidas", price:"R$5.00", recommended: true}
     
 

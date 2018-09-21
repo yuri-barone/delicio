@@ -6,8 +6,13 @@ import Grid from '@material-ui/core/Grid';
 import Bar from './Bar'
 import animateScrollTo from 'animated-scroll-to'
 
+var innativeTimeout;
+var activeTimeout;
+
 class App extends Component {
-  state = {selectedCategory: 'Bebidas', arrayOfFoods:this.getRecommendeds(), x:0}
+  state = {selectedCategory: 'Bebidas', arrayOfFoods:this.getRecommendeds(), x:0, side:"right"}
+  
+  
   
 
   getRecommendeds(){
@@ -64,22 +69,70 @@ class App extends Component {
   }
 
   scrollFunction(){    
+    var maximumScrollWidth = document.documentElement.scrollWidth - document.documentElement.clientWidth
+
+    if (document.documentElement.scrollLeft === maximumScrollWidth) {
+      var side = "left"
+      this.setState({...this.state, side})
+    }
+
+    if (document.documentElement.scrollLeft === 0) {
+      var side = "right"
+      this.setState({...this.state, side})
+    }
+
+    if (this.state.side === "right") {
     const x = this.state.x + 341
     this.setState({...this.state, x})    
     animateScrollTo(x, {horizontal: true, speed:5000})
+    }
+
+    if (this.state.side === "left") {
+    
+    const x = this.state.x - 341
+    this.setState({...this.state, x})    
+    animateScrollTo(x, {horizontal: true, speed:5000})
+    }
+    
 
   }
 
     startCounter(){     
-      var legalTimer = setInterval(this.scrollFunction.bind(this), 3000)
+    activeTimeout = setInterval(this.scrollFunction.bind(this), 3000)
     }
 
     componentDidMount(){
-      this.startCounter()
+      this.startOfAll()
+      
     }
     
+    startOfAll(){
+      document.documentElement.addEventListener("mousemove", this.resetTimer.bind(this), false);
+      document.documentElement.addEventListener("mousedown", this.resetTimer.bind(this), false);
+      document.documentElement.addEventListener("keypress", this.resetTimer.bind(this), false);
+      document.documentElement.addEventListener("DOMMouseScroll", this.resetTimer.bind(this), false);
+      document.documentElement.addEventListener("mousewheel", this.resetTimer.bind(this), false);
+      document.documentElement.addEventListener("touchmove", this.resetTimer.bind(this), false);
+      document.documentElement.addEventListener("MSPointerMove", this.resetTimer.bind(this), false);
+
+      this.innativeTimer()
+    }
     
+    innativeTimer(){
+      innativeTimeout = window.setTimeout(this.startCounter.bind(this), 2000);
+      
+    }
+
+    goActive(){
+      clearInterval(activeTimeout)
+      this.innativeTimer()
+    }
     
+    resetTimer(e) {
+      window.clearTimeout(innativeTimeout);
+      this.goActive()
+  }
+
   render() {
     
     return (    
@@ -102,6 +155,5 @@ export default App;
 
 /*
   fazer botao de rolamento
-  fazer barra se movimentar solo
-  subir no gitpages
+  subir no git pages
 */
