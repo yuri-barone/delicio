@@ -45,3 +45,12 @@
   height: 250px;
 }
 
+.button-left {
+  position: fixed !important;
+  left: 10px;
+}
+
+.button-right {
+  position: fixed !important;
+  right: 10px;
+}

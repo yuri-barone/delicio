@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import './App.css';
-import MenuItem from './components/MenuItem'
-import {foodItem} from './menuOptions'
+import MenuItem from './components/MenuItem';
+import {foodItem} from './menuOptions';
 import Grid from '@material-ui/core/Grid';
-import Bar from './Bar'
-import animateScrollTo from 'animated-scroll-to'
+import Bar from './Bar';
+import animateScrollTo from 'animated-scroll-to';
+import Button from '@material-ui/core/Button';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
 
 var innativeTimeout;
 var activeTimeout;
 
 class App extends Component {
-  state = {selectedCategory: 'Bebidas', arrayOfFoods:this.getRecommendeds(), x:0, side:"right"}
-  
-  
-  
+  state = {selectedCategory: 'Bebidas', arrayOfFoods:this.getRecommendeds(), x:0, side:"right", hasScroll:true}
 
+
+  checkIfHasScrollBar(){
+    var maximumScrollWidth = document.documentElement.scrollWidth - document.documentElement.clientWidth
+    var hasScroll = true
+    if (maximumScrollWidth === 0) {
+      hasScroll = false      
+    }
+    return hasScroll    
+  }
   getRecommendeds(){
     var arrayOfRecommendedsFood = foodItem.filter(food => food.recommended)
     return arrayOfRecommendedsFood
@@ -29,19 +38,26 @@ class App extends Component {
     )
   }
 
+  componentDidUpdate(){
+    let hasScroll = this.checkIfHasScrollBar()
+    if(hasScroll !== this.state.hasScroll){
+      this.setState({...this.state, hasScroll})    
+    }
+  }
+
   valueChanged = val => {
     if (val === "estoucomsorte!") {
-      this.ImLucky(val)
+      this.ImLucky(val)       
       return
     }
     var selectedCategory = val 
     var arrayOfFoods = foodItem.filter(function (food){
       return food.category === selectedCategory
     })
+    var hasScroll = this.checkIfHasScrollBar()
+    this.setState({...this.state, arrayOfFoods, selectedCategory, hasScroll})
     
-    
-    this.setState({...this.state, arrayOfFoods, selectedCategory})
-                          
+          
   }
 
   ImLucky(val) {
@@ -56,15 +72,15 @@ class App extends Component {
     var RandomSnack = arrayOfFoodsSnacks[Math.floor(Math.random()*arrayOfFoodsSnacks.length)]
 
     var arrayOfFoods = [RandomDrink, RandomDessert, RandomSnack]
-
-    this.setState({...this.state, arrayOfFoods, selectedCategory})
+    var hasScroll = this.checkIfHasScrollBar()
+    this.setState({...this.state, arrayOfFoods, selectedCategory, hasScroll})
   }
 
   giveWidth() {
     var num = this.state.arrayOfFoods.length
     
     var resultWidth = num * 341
-
+    
     return resultWidth
   }
 
@@ -103,8 +119,9 @@ class App extends Component {
 
     componentDidMount(){
       this.startOfAll()
-      
+      this.checkIfHasScrollBar()
     }
+
     
     startOfAll(){
       document.documentElement.addEventListener("mousemove", this.resetTimer.bind(this), false);
@@ -119,7 +136,7 @@ class App extends Component {
     }
     
     innativeTimer(){
-      innativeTimeout = window.setTimeout(this.startCounter.bind(this), 2000);
+      innativeTimeout = window.setTimeout(this.startCounter.bind(this), 15000);
       
     }
 
@@ -133,6 +150,16 @@ class App extends Component {
       this.goActive()
   }
 
+    goRightDirection(){
+      const x = document.documentElement.scrollLeft + 341
+      animateScrollTo(x, {horizontal: true, speed:5000})
+    }
+
+    goLeftDirection(){
+      const x = document.documentElement.scrollLeft - 341
+      animateScrollTo(x, {horizontal: true, speed:5000})
+    }
+
   render() {
     
     return (    
@@ -144,6 +171,12 @@ class App extends Component {
          {this.state.arrayOfFoods.map(this.renderfoodItem)}
         
       </Grid>
+      { this.state.hasScroll && <Button variant="fab" onClick={this.goLeftDirection} className="button-left">
+        <ChevronLeft />
+      </Button>}
+      { this.state.hasScroll && <Button variant="fab" onClick={this.goRightDirection} className="button-right">
+        <ChevronRight />
+      </Button>}
       </div>
     );
   }
@@ -154,6 +187,5 @@ class App extends Component {
 export default App;
 
 /*
-  fazer botao de rolamento
   subir no git pages
 */
