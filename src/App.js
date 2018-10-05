@@ -114,6 +114,7 @@ class App extends Component {
   }
 
     startCounter(){     
+    this.setState({...this.state, arrayOfFoods:this.getRecommendeds()})
     activeTimeout = setInterval(this.scrollFunction.bind(this), 3000)
     }
 
