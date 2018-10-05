@@ -13,7 +13,7 @@ class MenuItem extends Component {
             <Card>
                 <CardMedia
                     component="img"
-                    height="350"
+                    height="340"
                     image={this.props.imgURL}
                     className="media"
                 />
