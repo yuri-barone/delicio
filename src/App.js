@@ -166,7 +166,7 @@ class App extends Component {
       <div >
       <Bar onChangeselectedCategory={this.valueChanged} filter={this.filterByCategory}> </Bar>
       
-       <Grid id="containerMoviment" style={{width:this.giveWidth(), paddingTop:59 }} container spacing={24}>     
+       <Grid id="containerMoviment" style={{ paddingTop:59 }} container spacing={24}>     
          
          {this.state.arrayOfFoods.map(this.renderfoodItem)}
         
