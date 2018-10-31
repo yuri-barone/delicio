@@ -55,6 +55,7 @@ class App extends Component {
       return food.category === selectedCategory
     })
     var hasScroll = this.checkIfHasScrollBar()
+    animateScrollTo(0, {horizontal:true, speed:10000})
     this.setState({...this.state, arrayOfFoods, selectedCategory, hasScroll})
     
           
@@ -63,7 +64,7 @@ class App extends Component {
   ImLucky(val) {
     var selectedCategory = val
 
-    var arrayOfFoodsDrinks = foodItem.filter(function(food) {return food.category === "bebidas"})
+    var arrayOfFoodsDrinks = foodItem.filter(function(food){return food.category === "bebidasquentes"})
     var arrayOfFoodsDessert = foodItem.filter(function(food){return food.category === "sobremesas"})
     var arrayOfFoodsSnacks = foodItem.filter(function(food){return food.category === "lanches"})
     
@@ -124,6 +125,7 @@ class App extends Component {
     }
 
     
+
     startOfAll(){
       document.documentElement.addEventListener("mousemove", this.resetTimer.bind(this), false);
       document.documentElement.addEventListener("mousedown", this.resetTimer.bind(this), false);
@@ -188,5 +190,8 @@ class App extends Component {
 export default App;
 
 /*
-  subir no git pages
+    Aumentar buttonNavigation 
+    quando rodar não selecionar nenhum
+    Colocar na tela "toque na tela e selecione uma opção"
+    https://github.com/yuri-barone/delicio/blob/gh-pages/img/
 */

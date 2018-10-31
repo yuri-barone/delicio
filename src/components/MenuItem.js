@@ -6,19 +6,25 @@ import CardMedia from '@material-ui/core/CardMedia';
 import './Menu.css';
 
 class MenuItem extends Component {
-    
+    fullScreen(){
+        console.log("i've tried")
+        document.documentElement.webkitRequestFullScreen()
+      }
+
+        
     render() {
         return (
             <div className="padding-left">
-            <Card style={{maxHeight:"522px"}}>
+            <Card style={{minHeight:"533.34px"}} >
                 <CardMedia
                     component="img"
                     height="340"
                     image={this.props.imgURL}
                     className="media"
+                    onClick={this.fullScreen}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="headline" component="h2">
+                    <Typography gutterBottom variant="title" component="h4">
                         {this.props.name}
                     </Typography>
                     <Typography className="min-height" component="p">
