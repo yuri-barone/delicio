@@ -20,6 +20,7 @@ class Bar extends Component {
         
     }
 
+    resetCategories = () => this.setState({selectedCategory : undefined})
 
     render(){
         const {selectedCategory} = this.state

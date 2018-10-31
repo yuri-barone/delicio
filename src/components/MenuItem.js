@@ -15,7 +15,7 @@ class MenuItem extends Component {
     render() {
         return (
             <div className="padding-left">
-            <Card style={{minHeight:"533.34px"}} >
+            <Card style={{minHeight:"583.34px"}} >
                 <CardMedia
                     component="img"
                     height="340"

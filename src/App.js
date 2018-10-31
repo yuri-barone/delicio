@@ -14,7 +14,7 @@ var activeTimeout;
 
 class App extends Component {
   state = {selectedCategory: 'Bebidas', arrayOfFoods:this.getRecommendeds(), x:0, side:"right", hasScroll:true}
-
+  navBar = undefined
 
   checkIfHasScrollBar(){
     var maximumScrollWidth = document.documentElement.scrollWidth - document.documentElement.clientWidth
@@ -116,6 +116,7 @@ class App extends Component {
 
     startCounter(){     
     this.setState({...this.state, arrayOfFoods:this.getRecommendeds()})
+    this.navBar.resetCategories()
     activeTimeout = setInterval(this.scrollFunction.bind(this), 3000)
     }
 
@@ -167,7 +168,7 @@ class App extends Component {
     
     return (    
       <div >
-      <Bar onChangeselectedCategory={this.valueChanged} filter={this.filterByCategory}> </Bar>
+      <Bar ref={elem => this.navBar = elem} onChangeselectedCategory={this.valueChanged} filter={this.filterByCategory}> </Bar>
       
        <Grid id="containerMoviment" style={{width:this.giveWidth(), paddingTop:59 }} container spacing={24}>     
          
@@ -193,5 +194,4 @@ export default App;
     Aumentar buttonNavigation 
     quando rodar não selecionar nenhum
     Colocar na tela "toque na tela e selecione uma opção"
-    https://github.com/yuri-barone/delicio/blob/gh-pages/img/
 */
