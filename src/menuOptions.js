@@ -85,7 +85,7 @@ export const foodItem = [
 	{name:"Pão na Chapa c/ Requeijão", imgURL:"https://raw.githubusercontent.com/yuri-barone/delicio/gh-pages/img/pao-chapa-requeijao.jpg", 
 		description:"Pão com requeijão *Catupiry derretidos na chapa (Opcional: Pão francês, Forma Branco ou Integral).", category:"lanches", price:"R$4,90", recommended:true},
 	
-	{name:"Pão c/ Mortadela na Chapa", imgURL:"https://raw.githubusercontent.com/yuri-barone/delicio/gh-pages/img/pao-chapa-requeijao.jpg", 
+	{name:"Pão c/ Mortadela na Chapa", imgURL:"https://raw.githubusercontent.com/yuri-barone/delicio/gh-pages/img/pao-chapa-mortadela.jpg", 
 		description:"Pão com manteiga e fatias de mortadelas aquecidos na chapa (Opcional: Pão francês, Forma Branco ou Integral).", category:"lanches", price:"R$4,90", recommended:true},
 	
 	
