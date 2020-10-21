@@ -7,7 +7,6 @@ import './Menu.css';
 
 class MenuItem extends Component {
     fullScreen(){
-        console.log("i've tried")
         document.documentElement.webkitRequestFullScreen()
       }
 
@@ -31,9 +30,9 @@ class MenuItem extends Component {
                         {this.props.description}
                     </Typography>
                     
-                    <Typography align="right" color="primary" variant="headline" component="h2">
+                    {/* <Typography align="right" color="primary" variant="headline" component="h2">
                         {this.props.price}
-                    </Typography>
+                    </Typography> */}
                 </CardContent>
 
 
