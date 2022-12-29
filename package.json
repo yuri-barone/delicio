@@ -10,7 +10,7 @@
     "animated-scroll-to": "^1.2.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.5",
+    "react-scripts": "5.0.1",
     "react-scroll-horizontal": "^1.5.1"
   },
   "scripts": {
